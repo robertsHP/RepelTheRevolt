@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Resources/Enemies/Shooter.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/GameScene/Enemies/Shooter.cs" type="Script" id=2]
+[ext_resource path="res://SceneNodes/GameScene/Enemies/Blood.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SceneNodes/GameScene/Weapons/Pistol.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 2, 5 )
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 82.6075
+
+[node name="PistolShooter" type="KinematicBody2D" groups=["Enemies"]]
+script = ExtResource( 2 )
+health = 4.0
+speed = 40.0
+moneyAfterKilling = 30
+partToDrop = ExtResource( 3 )
+weaponPath = NodePath("Pistol")
+timeBeforeShootingNext = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 5 )
+
+[node name="ViewArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ViewArea"]
+shape = SubResource( 6 )
+
+[node name="Pistol" parent="." instance=ExtResource( 4 )]
+affectEnemies = false
+affectStructures = true
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 2.98023e-08, 1.19209e-07 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+
+[connection signal="area_entered" from="ViewArea" to="." method="_on_ViewArea_area_entered"]
+[connection signal="area_exited" from="ViewArea" to="." method="_on_ViewArea_area_exited"]

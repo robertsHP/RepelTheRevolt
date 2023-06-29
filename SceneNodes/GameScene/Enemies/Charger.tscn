@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/GameScene/Enemies/Charger.cs" type="Script" id=1]
+[ext_resource path="res://Resources/Enemies/Charger.png" type="Texture" id=2]
+[ext_resource path="res://SceneNodes/GameScene/Enemies/Blood.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 2, 5 )
+
+[node name="Charger" type="KinematicBody2D" groups=["Enemies"]]
+script = ExtResource( 1 )
+speed = 50.0
+moneyAfterKilling = 20
+partToDrop = ExtResource( 3 )
+meleeDamage = 2
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 2.98023e-08, 1.19209e-07 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )

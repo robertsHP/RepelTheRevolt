@@ -1,0 +1,53 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Scripts/GameScene/Other/Explosion.cs" type="Script" id=1]
+[ext_resource path="res://Resources/Explosion/Explosion5.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Explosion/Explosion10.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Explosion/Explosion3.png" type="Texture" id=4]
+[ext_resource path="res://Resources/Explosion/Explosion8.png" type="Texture" id=5]
+[ext_resource path="res://Resources/Explosion/Explosion9.png" type="Texture" id=6]
+[ext_resource path="res://Resources/Explosion/Explosion7.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Explosion/Explosion1.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Explosion/Explosion4.png" type="Texture" id=9]
+[ext_resource path="res://Resources/Explosion/Explosion2.png" type="Texture" id=10]
+[ext_resource path="res://Resources/Explosion/Explosion6.png" type="Texture" id=11]
+[ext_resource path="res://Resources/Explosion/ExplosionAftermath.png" type="Texture" id=12]
+[ext_resource path="res://SceneNodes/GameScene/Components/FadeAwayComponent.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Sounds/Other/Explosion.wav" type="AudioStream" id=14]
+
+[sub_resource type="CircleShape2D" id=18]
+radius = 17.0294
+
+[sub_resource type="SpriteFrames" id=17]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 11 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 17.0
+} ]
+
+[node name="Explosion" type="Area2D"]
+script = ExtResource( 1 )
+damage = 10
+explosionAnimatedSpritePath = NodePath("AnimatedSprite")
+audioStream = ExtResource( 14 )
+aftermathSpritePath = NodePath("AftermathSprite")
+fadeAwayComponentPath = NodePath("FadeAwayComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 18 )
+
+[node name="AftermathSprite" type="Sprite" parent="."]
+position = Vector2( 0, 4.76837e-07 )
+scale = Vector2( 0.533333, 0.533333 )
+texture = ExtResource( 12 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+z_index = 5
+frames = SubResource( 17 )
+
+[node name="FadeAwayComponent" parent="." instance=ExtResource( 13 )]
+fadeStartTime = 5.0
+
+[connection signal="area_entered" from="." to="." method="_on_Explosion_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Explosion_body_entered"]

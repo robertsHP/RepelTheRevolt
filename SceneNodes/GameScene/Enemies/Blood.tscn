@@ -1,0 +1,24 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/GameScene/Other/Giblet.cs" type="Script" id=1]
+[ext_resource path="res://SceneNodes/GameScene/Components/FadeAwayComponent.tscn" type="PackedScene" id=4]
+[ext_resource path="res://SceneNodes/GameScene/Components/LaunchComponent.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Resources/Enemies/Blood/BloodMedium2.png" type="Texture" id=6]
+[ext_resource path="res://Resources/Enemies/Blood/BloodSmall2.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Enemies/Blood/BloodSmall1.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Enemies/Blood/BloodMedium1.png" type="Texture" id=9]
+[ext_resource path="res://Resources/Enemies/Blood/BloodMedium3.png" type="Texture" id=10]
+
+[node name="Blood" type="Sprite"]
+scale = Vector2( 2, 2 )
+script = ExtResource( 1 )
+launchSpeedMin = 200.0
+launchSpeedMax = 300.0
+launchComponentPath = NodePath("LaunchComponent")
+fadeAwayComponentPath = NodePath("FadeAwayComponent")
+textures = [ ExtResource( 9 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 7 ) ]
+
+[node name="FadeAwayComponent" parent="." instance=ExtResource( 4 )]
+fadeStartTime = 5.0
+
+[node name="LaunchComponent" parent="." instance=ExtResource( 5 )]

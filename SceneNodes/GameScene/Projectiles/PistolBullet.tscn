@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/GameScene/Weapons/Projectile.cs" type="Script" id=1]
+[ext_resource path="res://Resources/Projectiles/Bullet.png" type="Texture" id=2]
+[ext_resource path="res://SceneNodes/GameScene/Components/LaunchComponent.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 5, 1 )
+
+[node name="PistolBullet" type="Node2D" groups=["Projectiles"]]
+script = ExtResource( 1 )
+damage = 1
+speed = 1100
+launchComponentPath = NodePath("LaunchComponent")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -4.76837e-07, -9.53674e-08 )
+scale = Vector2( 0.5, 0.1 )
+
+[node name="LaunchComponent" parent="." instance=ExtResource( 3 )]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

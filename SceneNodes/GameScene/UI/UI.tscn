@@ -1,0 +1,218 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scripts/GameScene/UI/GameUI/SelectionBox.cs" type="Script" id=2]
+[ext_resource path="res://Scripts/GameScene/UI/GameUI/GunButtons.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/GameScene/UI/GameUI/TopInterface.cs" type="Script" id=4]
+[ext_resource path="res://Scripts/GameScene/UI/UI.cs" type="Script" id=5]
+[ext_resource path="res://Resources/UI/Selection.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/GameScene/UI/GameUI/MenuButtons.cs" type="Script" id=7]
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.196078, 1, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.32549, 0.32549, 0.32549, 1 )
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.984314, 0.105882, 0.105882, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.32549, 0.32549, 0.32549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.972549, 0.972549, 0.972549, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.32549, 0.32549, 0.32549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 0.211765, 0.211765, 0.211765, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.32549, 0.32549, 0.32549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 1, 0.980392, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.32549, 0.32549, 0.32549, 1 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.211765, 0.211765, 0.211765, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.32549, 0.32549, 0.32549, 1 )
+
+[node name="UI" type="Node2D"]
+position = Vector2( 512, 320 )
+z_index = 100
+script = ExtResource( 5 )
+topInterfacePath = NodePath("TopInterface")
+selectionNodePath = NodePath("Selection")
+
+[node name="TopInterface" type="Panel" parent="."]
+margin_left = -512.0
+margin_top = -320.0
+margin_right = 512.0
+margin_bottom = -257.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+healthBarPath = NodePath("HealthBar")
+fireBarPath = NodePath("FireBar")
+reloadBarPath = NodePath("ReloadBar")
+moneyInfoPath = NodePath("MoneyLabel")
+ammoInfoPath = NodePath("AmmoLabel")
+gunButtonsPath = NodePath("GunButtons")
+
+[node name="HealthBar" type="ProgressBar" parent="TopInterface"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 104.0
+margin_bottom = 32.0
+custom_styles/fg = SubResource( 6 )
+custom_styles/bg = SubResource( 9 )
+value = 100.0
+percent_visible = false
+
+[node name="FireBar" type="ProgressBar" parent="TopInterface"]
+margin_left = 16.0
+margin_top = 40.0
+margin_right = 56.0
+margin_bottom = 54.0
+rect_pivot_offset = Vector2( 40, 8 )
+custom_styles/fg = SubResource( 10 )
+custom_styles/bg = SubResource( 12 )
+percent_visible = false
+
+[node name="ReloadBar" type="ProgressBar" parent="TopInterface"]
+margin_left = 64.0
+margin_top = 40.0
+margin_right = 104.0
+margin_bottom = 54.0
+rect_pivot_offset = Vector2( 40, 8 )
+custom_styles/fg = SubResource( 11 )
+custom_styles/bg = SubResource( 13 )
+value = 100.0
+percent_visible = false
+
+[node name="MoneyLabel" type="Label" parent="TopInterface"]
+margin_left = 112.0
+margin_top = 16.0
+margin_right = 200.0
+margin_bottom = 30.0
+text = "$0"
+
+[node name="AmmoLabel" type="Label" parent="TopInterface"]
+margin_left = 112.0
+margin_top = 40.0
+margin_right = 200.0
+margin_bottom = 54.0
+text = "0/0"
+
+[node name="GunButtons" type="Control" parent="TopInterface"]
+margin_left = 208.0
+margin_top = 8.0
+margin_right = 824.0
+margin_bottom = 56.0
+rect_pivot_offset = Vector2( -8, 16 )
+script = ExtResource( 3 )
+
+[node name="Gun1Button" type="Button" parent="TopInterface/GunButtons"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 104.0
+margin_bottom = 40.0
+disabled = true
+toggle_mode = true
+action_mode = 0
+text = "Pistol"
+
+[node name="Gun2Button" type="Button" parent="TopInterface/GunButtons"]
+margin_left = 112.0
+margin_top = 8.0
+margin_right = 208.0
+margin_bottom = 40.0
+disabled = true
+toggle_mode = true
+action_mode = 0
+text = "Shotgun"
+
+[node name="Gun3Button" type="Button" parent="TopInterface/GunButtons"]
+margin_left = 216.0
+margin_top = 8.0
+margin_right = 319.0
+margin_bottom = 40.0
+rect_rotation = -0.158039
+disabled = true
+toggle_mode = true
+action_mode = 0
+text = "Assault Rifle"
+
+[node name="Gun4Button" type="Button" parent="TopInterface/GunButtons"]
+margin_left = 328.0
+margin_top = 8.0
+margin_right = 424.0
+margin_bottom = 40.0
+disabled = true
+toggle_mode = true
+action_mode = 0
+text = "RPG"
+
+[node name="MenuButtons" type="Control" parent="TopInterface"]
+margin_left = 864.0
+margin_top = 8.0
+margin_right = 1016.0
+margin_bottom = 56.0
+script = ExtResource( 7 )
+
+[node name="BuildButton" type="Button" parent="TopInterface/MenuButtons"]
+margin_top = 8.0
+margin_right = 45.0
+margin_bottom = 43.0
+text = "Build"
+
+[node name="ShopButton" type="Button" parent="TopInterface/MenuButtons"]
+margin_left = 54.0
+margin_top = 8.0
+margin_right = 97.0
+margin_bottom = 43.0
+text = "Shop"
+
+[node name="MenuButton" type="Button" parent="TopInterface/MenuButtons"]
+margin_left = 104.0
+margin_top = 8.0
+margin_right = 152.0
+margin_bottom = 43.0
+text = "Menu"
+
+[node name="Selection" type="Node2D" parent="."]
+position = Vector2( -512, -320 )
+z_index = 100
+
+[node name="SelectionBox" type="Sprite" parent="Selection"]
+z_index = 100
+texture = ExtResource( 6 )
+script = ExtResource( 2 )
+
+[connection signal="pressed" from="TopInterface/GunButtons/Gun1Button" to="TopInterface/GunButtons" method="_on_Gun1Button_pressed"]
+[connection signal="pressed" from="TopInterface/GunButtons/Gun2Button" to="TopInterface/GunButtons" method="_on_Gun2Button_pressed"]
+[connection signal="pressed" from="TopInterface/GunButtons/Gun3Button" to="TopInterface/GunButtons" method="_on_Gun3Button_pressed"]
+[connection signal="pressed" from="TopInterface/GunButtons/Gun4Button" to="TopInterface/GunButtons" method="_on_Gun4Button_pressed"]
+[connection signal="pressed" from="TopInterface/MenuButtons/BuildButton" to="TopInterface/MenuButtons" method="_on_BuildButton_pressed"]
+[connection signal="pressed" from="TopInterface/MenuButtons/ShopButton" to="TopInterface/MenuButtons" method="_on_ShopButton_pressed"]
+[connection signal="pressed" from="TopInterface/MenuButtons/MenuButton" to="TopInterface/MenuButtons" method="_on_MenuButton_pressed"]

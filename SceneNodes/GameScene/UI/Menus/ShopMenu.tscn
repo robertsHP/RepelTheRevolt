@@ -1,0 +1,181 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://SceneNodes/GameScene/UI/Menus/ShopMenu/RPGShopPayment.tscn" type="PackedScene" id=1]
+[ext_resource path="res://SceneNodes/GameScene/UI/Menus/ShopMenu/AssaultRifleShopPayment.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/GameScene/UI/Menus/ShopMenu.cs" type="Script" id=4]
+[ext_resource path="res://SceneNodes/GameScene/UI/Menus/ShopMenu/PistolShopPayment.tscn" type="PackedScene" id=5]
+[ext_resource path="res://SceneNodes/GameScene/UI/Menus/ShopMenu/ShotgunShopPayment.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Resources/UI/RepairIcon.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/GameScene/UI/Menus/Functionality/RepairFunction.cs" type="Script" id=8]
+[ext_resource path="res://Resources/UI/Person.png" type="Texture" id=9]
+[ext_resource path="res://Scripts/GameScene/UI/Menus/Functionality/AdditionalShooters.cs" type="Script" id=10]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.196078, 1, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.32549, 0.32549, 0.32549, 1 )
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.984314, 0.105882, 0.105882, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.32549, 0.32549, 0.32549, 1 )
+
+[node name="ShopMenu" type="Panel"]
+self_modulate = Color( 1, 1, 1, 0.384314 )
+margin_left = -512.0
+margin_top = -320.0
+margin_right = 512.0
+margin_bottom = 280.0
+script = ExtResource( 4 )
+repairFunctionPath = NodePath("CoverOverPanel/Building/RepairFunction")
+
+[node name="CoverOverPanel" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0.713726 )
+margin_left = 104.0
+margin_top = 70.0
+margin_right = 920.0
+margin_bottom = 590.0
+
+[node name="Guns" type="Control" parent="CoverOverPanel"]
+margin_left = 24.0
+margin_top = 176.0
+margin_right = 792.0
+margin_bottom = 424.0
+
+[node name="PistolShopPayment" parent="CoverOverPanel/Guns" instance=ExtResource( 5 )]
+margin_top = -66.0
+margin_bottom = 14.0
+shopMenuPath = NodePath("../../..")
+
+[node name="ShotgunShopPayment" parent="CoverOverPanel/Guns" instance=ExtResource( 6 )]
+margin_top = 24.0
+margin_bottom = 104.0
+shopMenuPath = NodePath("../../..")
+
+[node name="AssaultRifleShopPayment" parent="CoverOverPanel/Guns" instance=ExtResource( 3 )]
+margin_top = 112.0
+margin_bottom = 192.0
+shopMenuPath = NodePath("../../..")
+
+[node name="RPGShopPayment" parent="CoverOverPanel/Guns" instance=ExtResource( 1 )]
+shopMenuPath = NodePath("../../..")
+
+[node name="Building" type="Panel" parent="CoverOverPanel"]
+margin_left = 24.0
+margin_top = 32.0
+margin_right = 192.0
+margin_bottom = 104.0
+
+[node name="RepairFunction" type="Control" parent="CoverOverPanel/Building"]
+margin_left = 8.0
+margin_top = 10.0
+margin_right = 160.0
+margin_bottom = 68.0
+script = ExtResource( 8 )
+
+[node name="CostLabel" type="Label" parent="CoverOverPanel/Building/RepairFunction"]
+margin_left = 88.0
+margin_top = 32.0
+margin_right = 152.0
+margin_bottom = 58.0
+text = "- 0$"
+valign = 1
+
+[node name="PurchaseButton" type="Button" parent="CoverOverPanel/Building/RepairFunction"]
+margin_top = 32.0
+margin_right = 80.0
+margin_bottom = 58.0
+text = "Repair"
+icon = ExtResource( 7 )
+
+[node name="HealthBar" type="ProgressBar" parent="CoverOverPanel/Building/RepairFunction"]
+margin_right = 152.0
+margin_bottom = 24.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+value = 100.0
+percent_visible = false
+
+[node name="AdditionalShooters" type="Panel" parent="CoverOverPanel"]
+margin_left = 200.0
+margin_top = 34.0
+margin_right = 792.0
+margin_bottom = 100.0
+script = ExtResource( 10 )
+purchaseButton1Path = NodePath("Shooter1")
+purchaseButton2Path = NodePath("Shooter2")
+purchaseButton3Path = NodePath("Shooter3")
+purchaseButton4Path = NodePath("Shooter4")
+
+[node name="Shooter1" type="Button" parent="CoverOverPanel/AdditionalShooters"]
+margin_left = 144.0
+margin_top = 8.0
+margin_right = 196.0
+margin_bottom = 55.0
+text = "2500$"
+icon = ExtResource( 9 )
+icon_align = 1
+
+[node name="Shooter2" type="Button" parent="CoverOverPanel/AdditionalShooters"]
+margin_left = 208.0
+margin_top = 8.0
+margin_right = 260.0
+margin_bottom = 55.0
+text = "2500$"
+icon = ExtResource( 9 )
+icon_align = 1
+
+[node name="Shooter3" type="Button" parent="CoverOverPanel/AdditionalShooters"]
+margin_left = 272.0
+margin_top = 8.0
+margin_right = 324.0
+margin_bottom = 55.0
+text = "2500$"
+icon = ExtResource( 9 )
+icon_align = 1
+
+[node name="Shooter4" type="Button" parent="CoverOverPanel/AdditionalShooters"]
+margin_left = 336.0
+margin_top = 8.0
+margin_right = 388.0
+margin_bottom = 55.0
+text = "2500$"
+icon = ExtResource( 9 )
+icon_align = 1
+
+[node name="Label" type="Label" parent="CoverOverPanel/AdditionalShooters"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 141.0
+margin_bottom = 38.0
+text = "Addtional shooters :"
+
+[node name="MenuTitle" type="Label" parent="CoverOverPanel"]
+margin_left = 392.0
+margin_top = 8.0
+margin_right = 432.0
+margin_bottom = 22.0
+text = "Shop"
+align = 1
+valign = 1
+
+[node name="BackButton" type="Button" parent="CoverOverPanel"]
+margin_left = 32.0
+margin_top = 464.0
+margin_right = 112.0
+margin_bottom = 500.0
+text = "Back"
+
+[connection signal="pressed" from="CoverOverPanel/Building/RepairFunction/PurchaseButton" to="CoverOverPanel/Building/RepairFunction" method="_on_PurchaseButton_pressed"]
+[connection signal="pressed" from="CoverOverPanel/AdditionalShooters/Shooter1" to="CoverOverPanel/AdditionalShooters" method="_on_Shooter1_pressed"]
+[connection signal="pressed" from="CoverOverPanel/AdditionalShooters/Shooter2" to="CoverOverPanel/AdditionalShooters" method="_on_Shooter2_pressed"]
+[connection signal="pressed" from="CoverOverPanel/AdditionalShooters/Shooter3" to="CoverOverPanel/AdditionalShooters" method="_on_Shooter3_pressed"]
+[connection signal="pressed" from="CoverOverPanel/AdditionalShooters/Shooter4" to="CoverOverPanel/AdditionalShooters" method="_on_Shooter4_pressed"]
+[connection signal="pressed" from="CoverOverPanel/BackButton" to="." method="_on_BackButton_pressed"]

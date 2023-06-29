@@ -1,0 +1,108 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Resources/Obstacles/WallStructure.png" type="Texture" id=1]
+[ext_resource path="res://Resources/Obstacles/TowerBuilding.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Obstacles/MineField.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/GameScene/UI/Menus/BuildMenu.cs" type="Script" id=4]
+
+[node name="BuildMenu" type="Panel"]
+self_modulate = Color( 1, 1, 1, 0.384314 )
+margin_left = -512.0
+margin_top = -320.0
+margin_right = 512.0
+margin_bottom = 280.0
+script = ExtResource( 4 )
+wallCostLabelPath = NodePath("CoverOverPanel/WallPurchase/CostLabel")
+towerCostLabelPath = NodePath("CoverOverPanel/TowerPurchase/CostLabel")
+mineFieldCostLabelPath = NodePath("CoverOverPanel/MineFieldPurchase/CostLabel")
+
+[node name="CoverOverPanel" type="Panel" parent="."]
+self_modulate = Color( 1, 1, 1, 0.713726 )
+margin_left = 392.0
+margin_top = 224.0
+margin_right = 632.0
+margin_bottom = 416.0
+
+[node name="WallPurchase" type="Control" parent="CoverOverPanel"]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 224.0
+margin_bottom = 58.0
+
+[node name="CostLabel" type="Label" parent="CoverOverPanel/WallPurchase"]
+margin_left = 144.0
+margin_right = 208.0
+margin_bottom = 24.0
+text = "$10"
+align = 1
+valign = 1
+
+[node name="PurchaseButton" type="Button" parent="CoverOverPanel/WallPurchase"]
+margin_top = 2.0
+margin_right = 128.0
+margin_bottom = 26.0
+text = "Wall"
+icon = ExtResource( 1 )
+
+[node name="TowerPurchase" type="Control" parent="CoverOverPanel"]
+margin_left = 16.0
+margin_top = 72.0
+margin_right = 224.0
+margin_bottom = 98.0
+
+[node name="CostLabel" type="Label" parent="CoverOverPanel/TowerPurchase"]
+margin_left = 144.0
+margin_top = 2.0
+margin_right = 208.0
+margin_bottom = 26.0
+text = "$100"
+align = 1
+valign = 1
+
+[node name="PurchaseButton" type="Button" parent="CoverOverPanel/TowerPurchase"]
+margin_top = 2.0
+margin_right = 128.0
+margin_bottom = 26.0
+text = "Tower"
+icon = ExtResource( 2 )
+
+[node name="MineFieldPurchase" type="Control" parent="CoverOverPanel"]
+margin_left = 16.0
+margin_top = 112.0
+margin_right = 224.0
+margin_bottom = 138.0
+
+[node name="CostLabel" type="Label" parent="CoverOverPanel/MineFieldPurchase"]
+margin_left = 144.0
+margin_top = 2.0
+margin_right = 208.0
+margin_bottom = 26.0
+text = "$70"
+align = 1
+valign = 1
+
+[node name="PurchaseButton" type="Button" parent="CoverOverPanel/MineFieldPurchase"]
+margin_top = 2.0
+margin_right = 128.0
+margin_bottom = 26.0
+text = "Mine Field"
+icon = ExtResource( 3 )
+
+[node name="MenuTitle" type="Label" parent="CoverOverPanel"]
+margin_left = 104.0
+margin_top = 8.0
+margin_right = 144.0
+margin_bottom = 22.0
+text = "Build"
+
+[node name="BackButton" type="Button" parent="CoverOverPanel"]
+margin_left = 80.0
+margin_top = 160.0
+margin_right = 160.0
+margin_bottom = 180.0
+text = "Back"
+
+[connection signal="pressed" from="CoverOverPanel/WallPurchase/PurchaseButton" to="." method="_on_WallPurchaseButton_pressed"]
+[connection signal="pressed" from="CoverOverPanel/TowerPurchase/PurchaseButton" to="." method="_on_TowerPurchaseButton_pressed"]
+[connection signal="pressed" from="CoverOverPanel/MineFieldPurchase/PurchaseButton" to="." method="_on_MineFieldPurchaseButton_pressed"]
+[connection signal="pressed" from="CoverOverPanel/BackButton" to="." method="_on_BackButton_pressed"]

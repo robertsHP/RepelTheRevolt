@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/GameScene/Obstacles/TowerBuilding.cs" type="Script" id=1]
+[ext_resource path="res://Resources/Obstacles/TowerBuilding.png" type="Texture" id=2]
+[ext_resource path="res://SceneNodes/GameScene/Other/AIShooter.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 82.6075
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.113725, 0.847059, 0.0705882, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.984314, 0.105882, 0.105882, 1 )
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 5.0
+
+[node name="TowerBuilding" type="Area2D" groups=["Obstacles", "Structures"]]
+script = ExtResource( 1 )
+collisionShapePath = NodePath("CollisionShape2D")
+healthBarPath = NodePath("HealthBar")
+personelNodePath = NodePath("Personel")
+aiShooterPath = NodePath("Personel/AIShooter")
+
+[node name="ViewArea" type="Area2D" parent="."]
+show_behind_parent = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ViewArea"]
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+z_index = 10
+texture = ExtResource( 2 )
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+margin_left = -7.0
+margin_top = -9.85813
+margin_right = 63.0
+margin_bottom = -3.85813
+rect_scale = Vector2( 0.2, 0.2 )
+custom_styles/fg = SubResource( 6 )
+custom_styles/bg = SubResource( 7 )
+value = 100.0
+percent_visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 8 )
+
+[node name="Personel" type="Node2D" parent="."]
+
+[node name="AIShooter" parent="Personel" instance=ExtResource( 3 )]
+
+[connection signal="body_entered" from="." to="." method="_on_Structure_body_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_Obstacle_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Obstacle_mouse_exited"]
+[connection signal="body_entered" from="ViewArea" to="." method="_on_ViewArea_body_entered"]
+[connection signal="body_exited" from="ViewArea" to="." method="_on_ViewArea_body_exited"]

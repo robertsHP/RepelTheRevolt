@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/MainMenuScene.cs" type="Script" id=2]
+
+[node name="MainMenuScene" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="Label" type="Label" parent="Panel"]
+anchor_right = 0.008
+margin_left = 376.0
+margin_top = 192.0
+margin_right = 638.0
+margin_bottom = 225.0
+text = "Repel The Revolt"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="PlayButton" type="Button" parent="Panel"]
+margin_left = 480.0
+margin_top = 264.0
+margin_right = 537.0
+margin_bottom = 290.0
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="Panel"]
+margin_left = 480.0
+margin_top = 312.0
+margin_right = 537.0
+margin_bottom = 338.0
+text = "Quit"
+
+[connection signal="pressed" from="Panel/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="Panel/QuitButton" to="." method="_on_QuitButton_pressed"]

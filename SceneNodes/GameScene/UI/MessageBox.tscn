@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/GameScene/UI/GameUI/MessageBox.cs" type="Script" id=1]
+[ext_resource path="res://SceneNodes/GameScene/Components/FadeAwayComponent.tscn" type="PackedScene" id=2]
+
+[node name="MessageBox" type="Panel"]
+margin_left = -128.0
+margin_top = -40.0
+margin_right = 128.0
+margin_bottom = 48.0
+script = ExtResource( 1 )
+fadeAwayComponentPath = NodePath("FadeAwayComponent")
+
+[node name="MessageLabel" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 248.0
+margin_bottom = 80.0
+text = "Text"
+align = 1
+valign = 1
+
+[node name="FadeAwayComponent" parent="." instance=ExtResource( 2 )]
+fadeStartTime = 1.0
+fadeSpeed = 1.0

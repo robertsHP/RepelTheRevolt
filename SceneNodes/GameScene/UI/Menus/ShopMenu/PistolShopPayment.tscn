@@ -1,0 +1,261 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/GameScene/UI/Menus/Functionality/ShopMenuFunctionality/Upgrades/DamagePurchase.cs" type="Script" id=1]
+[ext_resource path="res://Resources/Projectiles/BulletIcon.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/GameScene/UI/Menus/Functionality/ShopMenuFunctionality/AmmoPurchase.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/GameScene/UI/Menus/Functionality/ShopMenuFunctionality/Upgrades/AccuracyPurchase.cs" type="Script" id=4]
+[ext_resource path="res://SceneNodes/GameScene/Weapons/Pistol.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/GameScene/UI/Menus/Functionality/ShopMenuFunctionality/Upgrades/CapacityPurchase.cs" type="Script" id=6]
+[ext_resource path="res://Scripts/GameScene/UI/Menus/Functionality/ShopMenuFunctionality/Upgrades/ReloadSpeedPurchase.cs" type="Script" id=7]
+[ext_resource path="res://Scripts/GameScene/UI/Menus/Functionality/ShopMenuFunctionality/GunPurchase.cs" type="Script" id=8]
+[ext_resource path="res://Scripts/GameScene/UI/Menus/Functionality/ShopMenuFunctionality/Upgrades/ExplosivePurchase.cs" type="Script" id=9]
+[ext_resource path="res://Scripts/GameScene/UI/Menus/Functionality/ShopMenuFunctionality/Upgrades/FiringSpeedPurchase.cs" type="Script" id=10]
+[ext_resource path="res://Scripts/GameScene/UI/Menus/Functionality/ShopMenuFunctionality/GunPayment.cs" type="Script" id=11]
+
+[node name="PistolShopPayment" type="Control"]
+margin_right = 768.0
+margin_bottom = 80.0
+script = ExtResource( 11 )
+gunPurchaseNodePath = NodePath("GunPanel/GunPurchase")
+ammoPurchaseNodePath = NodePath("GunPanel/AmmoPurchase")
+upgradeNodePaths = [ NodePath("UpgradePanel/AccuracyPurchase"), NodePath("UpgradePanel/FiringSpeedPurchase"), NodePath("UpgradePanel/DamagePurchase"), NodePath("UpgradePanel/CapacityPurchase"), NodePath("UpgradePanel/ReloadSpeedPurchase"), NodePath("SpecialUpgradePanel/ExplosivePurchase") ]
+
+[node name="GunPanel" type="Panel" parent="."]
+margin_right = 160.0
+margin_bottom = 56.0
+
+[node name="GunPurchase" type="Control" parent="GunPanel"]
+margin_left = 8.0
+margin_right = 104.0
+margin_bottom = 56.0
+script = ExtResource( 8 )
+gunPaymentPath = NodePath("../..")
+weaponScene = ExtResource( 5 )
+
+[node name="CostLabel" type="Label" parent="GunPanel/GunPurchase"]
+margin_top = 8.0
+margin_right = 96.0
+margin_bottom = 22.0
+rect_pivot_offset = Vector2( 64, 8 )
+text = "$150"
+align = 1
+
+[node name="PurchaseButton" type="Button" parent="GunPanel/GunPurchase"]
+margin_top = 24.0
+margin_right = 96.0
+margin_bottom = 48.0
+action_mode = 0
+text = "Pistol"
+
+[node name="AmmoPurchase" type="Control" parent="GunPanel"]
+margin_left = 112.0
+margin_right = 152.0
+margin_bottom = 56.0
+script = ExtResource( 3 )
+gunPaymentPath = NodePath("../..")
+
+[node name="CostLabel" type="Label" parent="GunPanel/AmmoPurchase"]
+margin_top = 8.0
+margin_right = 40.0
+margin_bottom = 22.0
+rect_pivot_offset = Vector2( 64, 8 )
+text = "$3"
+align = 1
+
+[node name="PurchaseButton" type="Button" parent="GunPanel/AmmoPurchase"]
+margin_top = 24.0
+margin_right = 40.0
+margin_bottom = 48.0
+rect_rotation = 0.227059
+text = "x1"
+icon = ExtResource( 2 )
+
+[node name="UpgradePanel" type="Panel" parent="."]
+margin_left = 168.0
+margin_right = 608.0
+margin_bottom = 80.0
+
+[node name="AccuracyPurchase" type="Control" parent="UpgradePanel"]
+margin_left = 8.0
+margin_right = 80.0
+margin_bottom = 80.0
+script = ExtResource( 4 )
+gunPaymentPath = NodePath("../..")
+
+[node name="CostLabel" type="Label" parent="UpgradePanel/AccuracyPurchase"]
+margin_top = 8.0
+margin_right = 72.0
+margin_bottom = 22.0
+rect_pivot_offset = Vector2( 64, 8 )
+text = "$10"
+align = 1
+
+[node name="PurchaseButton" type="Button" parent="UpgradePanel/AccuracyPurchase"]
+margin_top = 24.0
+margin_right = 72.0
+margin_bottom = 48.0
+text = "Accuracy"
+
+[node name="StateLabel" type="Label" parent="UpgradePanel/AccuracyPurchase"]
+margin_top = 56.0
+margin_right = 72.0
+margin_bottom = 72.0
+text = "0"
+align = 1
+valign = 1
+
+[node name="FiringSpeedPurchase" type="Control" parent="UpgradePanel"]
+margin_left = 88.0
+margin_right = 178.0
+margin_bottom = 80.0
+script = ExtResource( 10 )
+gunPaymentPath = NodePath("../..")
+
+[node name="CostLabel" type="Label" parent="UpgradePanel/FiringSpeedPurchase"]
+margin_top = 8.0
+margin_right = 88.0
+margin_bottom = 22.0
+rect_pivot_offset = Vector2( 64, 8 )
+text = "$10"
+align = 1
+
+[node name="PurchaseButton" type="Button" parent="UpgradePanel/FiringSpeedPurchase"]
+margin_top = 24.0
+margin_right = 90.0
+margin_bottom = 48.0
+rect_pivot_offset = Vector2( 72, 8 )
+text = "Firing Speed"
+
+[node name="StateLabel" type="Label" parent="UpgradePanel/FiringSpeedPurchase"]
+margin_top = 56.0
+margin_right = 88.0
+margin_bottom = 72.0
+text = "0"
+align = 1
+valign = 1
+
+[node name="DamagePurchase" type="Control" parent="UpgradePanel"]
+margin_left = 184.0
+margin_right = 248.0
+margin_bottom = 80.0
+script = ExtResource( 1 )
+gunPaymentPath = NodePath("../..")
+
+[node name="CostLabel" type="Label" parent="UpgradePanel/DamagePurchase"]
+margin_top = 8.0
+margin_right = 64.0
+margin_bottom = 22.0
+rect_pivot_offset = Vector2( 64, 8 )
+text = "$10"
+align = 1
+
+[node name="PurchaseButton" type="Button" parent="UpgradePanel/DamagePurchase"]
+margin_top = 24.0
+margin_right = 64.0
+margin_bottom = 48.0
+rect_pivot_offset = Vector2( 72, 8 )
+text = "Damage"
+
+[node name="StateLabel" type="Label" parent="UpgradePanel/DamagePurchase"]
+margin_top = 56.0
+margin_right = 64.0
+margin_bottom = 72.0
+text = "0"
+align = 1
+valign = 1
+
+[node name="CapacityPurchase" type="Control" parent="UpgradePanel"]
+margin_left = 256.0
+margin_right = 328.0
+margin_bottom = 80.0
+script = ExtResource( 6 )
+gunPaymentPath = NodePath("../..")
+
+[node name="CostLabel" type="Label" parent="UpgradePanel/CapacityPurchase"]
+margin_top = 8.0
+margin_right = 72.0
+margin_bottom = 22.0
+rect_pivot_offset = Vector2( 64, 8 )
+text = "$10"
+align = 1
+
+[node name="PurchaseButton" type="Button" parent="UpgradePanel/CapacityPurchase"]
+margin_top = 24.0
+margin_right = 72.0
+margin_bottom = 48.0
+rect_pivot_offset = Vector2( 72, 8 )
+text = "Capacity"
+
+[node name="StateLabel" type="Label" parent="UpgradePanel/CapacityPurchase"]
+margin_top = 56.0
+margin_right = 72.0
+margin_bottom = 72.0
+text = "0"
+align = 1
+valign = 1
+
+[node name="ReloadSpeedPurchase" type="Control" parent="UpgradePanel"]
+margin_left = 336.0
+margin_right = 434.0
+margin_bottom = 80.0
+script = ExtResource( 7 )
+gunPaymentPath = NodePath("../..")
+
+[node name="CostLabel" type="Label" parent="UpgradePanel/ReloadSpeedPurchase"]
+margin_top = 8.0
+margin_right = 96.0
+margin_bottom = 22.0
+rect_pivot_offset = Vector2( 64, 8 )
+text = "$10"
+align = 1
+
+[node name="PurchaseButton" type="Button" parent="UpgradePanel/ReloadSpeedPurchase"]
+margin_top = 24.0
+margin_right = 98.0
+margin_bottom = 48.0
+rect_pivot_offset = Vector2( 72, 8 )
+text = "Reload Speed"
+
+[node name="StateLabel" type="Label" parent="UpgradePanel/ReloadSpeedPurchase"]
+margin_top = 56.0
+margin_right = 96.0
+margin_bottom = 72.0
+text = "0"
+align = 1
+valign = 1
+
+[node name="SpecialUpgradePanel" type="Panel" parent="."]
+margin_left = 616.0
+margin_right = 768.0
+margin_bottom = 56.0
+
+[node name="ExplosivePurchase" type="Control" parent="SpecialUpgradePanel"]
+margin_left = 8.0
+margin_right = 144.0
+margin_bottom = 56.0
+script = ExtResource( 9 )
+gunPaymentPath = NodePath("../..")
+
+[node name="CostLabel" type="Label" parent="SpecialUpgradePanel/ExplosivePurchase"]
+margin_top = 8.0
+margin_right = 136.0
+margin_bottom = 22.0
+rect_pivot_offset = Vector2( 64, 8 )
+text = "$2500"
+align = 1
+
+[node name="PurchaseButton" type="Button" parent="SpecialUpgradePanel/ExplosivePurchase"]
+margin_top = 24.0
+margin_right = 136.0
+margin_bottom = 48.0
+rect_pivot_offset = Vector2( 72, 8 )
+text = "Explosive Bullets"
+
+[connection signal="pressed" from="GunPanel/GunPurchase/PurchaseButton" to="GunPanel/GunPurchase" method="_on_PurchaseButton_pressed"]
+[connection signal="pressed" from="GunPanel/AmmoPurchase/PurchaseButton" to="GunPanel/AmmoPurchase" method="_on_PurchaseButton_pressed"]
+[connection signal="pressed" from="UpgradePanel/AccuracyPurchase/PurchaseButton" to="UpgradePanel/AccuracyPurchase" method="_on_PurchaseButton_pressed"]
+[connection signal="pressed" from="UpgradePanel/FiringSpeedPurchase/PurchaseButton" to="UpgradePanel/FiringSpeedPurchase" method="_on_PurchaseButton_pressed"]
+[connection signal="pressed" from="UpgradePanel/DamagePurchase/PurchaseButton" to="UpgradePanel/DamagePurchase" method="_on_PurchaseButton_pressed"]
+[connection signal="pressed" from="UpgradePanel/CapacityPurchase/PurchaseButton" to="UpgradePanel/CapacityPurchase" method="_on_PurchaseButton_pressed"]
+[connection signal="pressed" from="UpgradePanel/ReloadSpeedPurchase/PurchaseButton" to="UpgradePanel/ReloadSpeedPurchase" method="_on_PurchaseButton_pressed"]
+[connection signal="pressed" from="SpecialUpgradePanel/ExplosivePurchase/PurchaseButton" to="SpecialUpgradePanel/ExplosivePurchase" method="_on_PurchaseButton_pressed"]

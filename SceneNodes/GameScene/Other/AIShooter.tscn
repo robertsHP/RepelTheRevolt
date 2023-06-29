@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/GameScene/Other/AIShooter.cs" type="Script" id=1]
+[ext_resource path="res://SceneNodes/GameScene/Weapons/Pistol.tscn" type="PackedScene" id=4]
+
+[node name="AIShooter" type="Node2D"]
+script = ExtResource( 1 )
+pistolPath = NodePath("Pistol")
+
+[node name="Pistol" parent="." instance=ExtResource( 4 )]

@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://SceneNodes/GameScene/Other/Mine.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/GameScene/Obstacles/MineField.cs" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 8, 8 )
+
+[node name="MineField" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[node name="Mines" type="Node2D" parent="."]
+
+[node name="Mine" parent="Mines" instance=ExtResource( 1 )]
+position = Vector2( -5, 6 )
+
+[node name="Mine2" parent="Mines" instance=ExtResource( 1 )]
+position = Vector2( -5, 0 )
+
+[node name="Mine3" parent="Mines" instance=ExtResource( 1 )]
+position = Vector2( -5, -6 )
+
+[node name="Mine4" parent="Mines" instance=ExtResource( 1 )]
+position = Vector2( 5, -6 )
+
+[node name="Mine5" parent="Mines" instance=ExtResource( 1 )]
+position = Vector2( 5, 0 )
+
+[node name="Mine6" parent="Mines" instance=ExtResource( 1 )]
+position = Vector2( 5, 6 )
+
+[connection signal="mouse_entered" from="." to="." method="_on_Obstacle_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Obstacle_mouse_exited"]

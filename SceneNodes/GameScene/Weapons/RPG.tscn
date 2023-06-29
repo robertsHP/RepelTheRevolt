@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/GameScene/Weapons/RPG.cs" type="Script" id=1]
+[ext_resource path="res://Sounds/Weapons/RPGFire.wav" type="AudioStream" id=2]
+[ext_resource path="res://Scripts/GameScene/Other/DeltaTimer.cs" type="Script" id=3]
+
+[node name="RPG" type="Node2D" groups=["Weapons"]]
+script = ExtResource( 1 )
+fireTimerPath = NodePath("FireTimer")
+reloadTimerPath = NodePath("ReloadTimer")
+affectEnemies = true
+ammoInWeapon = 1
+ammoLimit = 1
+accuracy = 4.0
+fireSecondsMax = 0.1
+reloadSecondsMax = 2.0
+audioStream = ExtResource( 2 )
+
+[node name="FireTimer" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="ReloadTimer" type="Node2D" parent="."]
+script = ExtResource( 3 )
